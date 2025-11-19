@@ -372,7 +372,7 @@ export default function Portfolio() {
                       ))}
                    </div>
                    <div className="pt-4 flex gap-4">
-                      <a href="https://learneazy.io" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium transition-all hover:translate-x-1">
+                      <a href="https://abhinavsriharsha.tech" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium transition-all hover:translate-x-1">
                         Visit Live Site <ArrowUpRight size={18} />
                       </a>
                       <a href="https://github.com/Abhinav-Sriharsha/Learneazy" className="flex items-center gap-2 px-6 py-3 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl font-medium transition-colors border border-white/10">
