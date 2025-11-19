@@ -49,6 +49,20 @@ const SkillCategory = ({ title, skills, icon: Icon, color }) => (
   </div>
 );
 
+const ImageModal = ({ imageSrc, onClose }) => {
+  if (!imageSrc) return null;
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200" onClick={onClose}>
+      <div className="relative w-[80vw] h-[80vh] animate-in zoom-in-95 duration-300" onClick={(e) => e.stopPropagation()}>
+        <button onClick={onClose} className="absolute -top-12 right-0 p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors text-white z-10">
+          <X size={24} />
+        </button>
+        <img src={imageSrc} alt="Enlarged view" className="w-full h-full object-contain" />
+      </div>
+    </div>
+  );
+};
+
 const ProjectModal = ({ project, onClose }) => {
   if (!project) return null;
   return (
@@ -116,6 +130,7 @@ const ProjectModal = ({ project, onClose }) => {
 
 export default function Portfolio() {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [enlargedImage, setEnlargedImage] = useState(null);
   const [time, setTime] = useState('');
 
   useEffect(() => {
@@ -381,18 +396,12 @@ export default function Portfolio() {
                    </div>
                 </div>
                 <div className="flex items-center justify-center relative">
-                   <div className="w-full aspect-video bg-zinc-950/50 rounded-xl border border-white/10 flex items-center justify-center overflow-hidden shadow-2xl group-hover:border-purple-500/30 transition-colors">
-                      <div className="text-center p-8">
-                        <Brain size={64} className="mx-auto text-purple-500 mb-4 opacity-80" />
-                        <p className="text-zinc-500 font-mono text-sm">Interactive Preview</p>
-                      </div>
-                      {/* Visual decoration for the screen */}
-                      <div className="absolute top-4 left-4 flex gap-2">
-                        <div className="w-3 h-3 rounded-full bg-red-500/20"></div>
-                        <div className="w-3 h-3 rounded-full bg-yellow-500/20"></div>
-                        <div className="w-3 h-3 rounded-full bg-green-500/20"></div>
-                      </div>
-                   </div>
+                   <img
+                     src="/flow.png"
+                     alt="Learneazy Flow Diagram"
+                     onClick={() => setEnlargedImage('/flow.png')}
+                     className="w-full rounded-xl border border-white/10 shadow-2xl group-hover:border-purple-500/30 transition-colors object-cover cursor-pointer hover:opacity-80"
+                   />
                 </div>
              </div>
           </div>
@@ -472,6 +481,7 @@ export default function Portfolio() {
       </footer>
 
       <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+      <ImageModal imageSrc={enlargedImage} onClose={() => setEnlargedImage(null)} />
     </div>
   );
 }
